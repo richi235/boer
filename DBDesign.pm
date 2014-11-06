@@ -38,7 +38,7 @@ sub getDB {
        #label => "",
        order => 2,
    
-       #dcolumnname => "id",
+       idcolumnname => "id",
    
        columns =>
        {
@@ -51,7 +51,7 @@ sub getDB {
                type   => "longnumber",
                linkto => "Game",
            },
-           "id" => { type => $UNIQUEIDCOLUMNNAME, },
+           "id" => { type => $UNIQIDCOLUMNNAME, },
        }
    };
    
@@ -64,13 +64,13 @@ sub getDB {
        #label => "",
        order => 1,
    
-       #idcolumnname => "id",
+       idcolumnname => "id",
    
        columns =>
        {
            "Name" => { type => "text", },
    
-           "id" => { type => $UNIQUEIDCOLUMNNAME, },
+           "id" => { type => $UNIQIDCOLUMNNAME, },
        }
    };
    
@@ -83,13 +83,13 @@ sub getDB {
        #label => "",
        order => 2,
    
-       #idcolumnname => "id",
+       idcolumnname => "id",
    
        columns =>
        {
            "gamedate" => { type => "datetime", },
    
-           "id" => { type => $UNIQUEIDCOLUMNNAME, },
+           "id" => { type => $UNIQIDCOLUMNNAME, },
        }
    };
    
