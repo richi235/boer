@@ -103,7 +103,11 @@ sub getDB {
         idcolumnname => "id",
 
         columns => {
-            "gamedate" => { type => "datetime", },
+
+            "gamedate" => {
+                type         => "datetime",
+                showInSelect => 1,
+              },
 
             "id" => { type => $UNIQIDCOLUMNNAME, },
 
