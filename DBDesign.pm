@@ -40,16 +40,26 @@ sub getDB {
         idcolumnname => "id",
 
         columns => {
+
             "Player_id" => {
                 type   => "longnumber",
                 linkto => "Player",
             },
+            
             "Player_won" => { type => "boolean", },
+
             "Game_id"    => {
                 type   => "longnumber",
                 linkto => "Game",
             },
+
             "id" => { type => $UNIQIDCOLUMNNAME, },
+
+            "deleted" =>
+            {
+               type => $DELETEDCOLUMNNAME,
+               order => 5,
+            },
         }
     };
 
@@ -63,7 +73,8 @@ sub getDB {
 
         idcolumnname => "id",
 
-        columns => {
+        columns =>
+        {
             "Name" =>
             {
                 type         => "text",
@@ -71,10 +82,17 @@ sub getDB {
             },
 
             "id" => { type => $UNIQIDCOLUMNNAME, },
+
+            "deleted" =>
+            {
+               type => $DELETEDCOLUMNNAME,
+               order => 5,
+            },
         }
     };
 
-    $DB->{tables}->{"Game"} = {
+    $DB->{tables}->{"Game"} =
+    {
         rights     => $RIGHTS,
         dbuser     => $DBUSER,
         primarykey => ["id"],
@@ -88,6 +106,12 @@ sub getDB {
             "gamedate" => { type => "datetime", },
 
             "id" => { type => $UNIQIDCOLUMNNAME, },
+
+            "deleted" =>
+            {
+               type => $DELETEDCOLUMNNAME,
+               order => 5,
+            },
         }
     };
 
