@@ -26,75 +26,72 @@ sub new {
 }
 
 sub getDB {
-   my $self = shift;
-   my $DB = $self->SUPER::getDB() || {};
+    my $self = shift;
+    my $DB = $self->SUPER::getDB() || {};
 
-   $DB->{tables}->{"Player_Won_in_game"} =
-   {
-       rights     => $RIGHTS,
-       dbuser     => $DBUSER,
-       primarykey => ["id"],
-   
-       #label => "",
-       order => 2,
-   
-       idcolumnname => "id",
-   
-       columns =>
-       {
-           "Player_id" => {
-               type   => "longnumber",
-               linkto => "Player",
-           },
-           "Player_won" => { type => "boolean", },
-           "Game_id"    => {
-               type   => "longnumber",
-               linkto => "Game",
-           },
-           "id" => { type => $UNIQIDCOLUMNNAME, },
-       }
-   };
-   
-   $DB->{tables}->{"Player"} =
-   {
-       rights     => $RIGHTS,
-       dbuser     => $DBUSER,
-       primarykey => ["id"],
-   
-       #label => "",
-       order => 1,
-   
-       idcolumnname => "id",
-   
-       columns =>
-       {
-           "Name" => { type => "text", },
-   
-           "id" => { type => $UNIQIDCOLUMNNAME, },
-       }
-   };
-   
-   $DB->{tables}->{"Game"} =
-   {
-       rights     => $RIGHTS,
-       dbuser     => $DBUSER,
-       primarykey => ["id"],
-   
-       #label => "",
-       order => 2,
-   
-       idcolumnname => "id",
-   
-       columns =>
-       {
-           "gamedate" => { type => "datetime", },
-   
-           "id" => { type => $UNIQIDCOLUMNNAME, },
-       }
-   };
-   
-   
-   return $DB;
+    $DB->{tables}->{"Player_Won_in_game"} = {
+        rights     => $RIGHTS,
+        dbuser     => $DBUSER,
+        primarykey => ["id"],
+
+        #label => "",
+        order => 2,
+
+        idcolumnname => "id",
+
+        columns => {
+            "Player_id" => {
+                type   => "longnumber",
+                linkto => "Player",
+            },
+            "Player_won" => { type => "boolean", },
+            "Game_id"    => {
+                type   => "longnumber",
+                linkto => "Game",
+            },
+            "id" => { type => $UNIQIDCOLUMNNAME, },
+        }
+    };
+
+    $DB->{tables}->{"Player"} = {
+        rights     => $RIGHTS,
+        dbuser     => $DBUSER,
+        primarykey => ["id"],
+
+        #label => "",
+        order => 1,
+
+        idcolumnname => "id",
+
+        columns => {
+            "Name" =>
+            {
+                type         => "text",
+                showInSelect => 1,
+            },
+
+            "id" => { type => $UNIQIDCOLUMNNAME, },
+        }
+    };
+
+    $DB->{tables}->{"Game"} = {
+        rights     => $RIGHTS,
+        dbuser     => $DBUSER,
+        primarykey => ["id"],
+
+        #label => "",
+        order => 2,
+
+        idcolumnname => "id",
+
+        columns => {
+            "gamedate" => { type => "datetime", },
+
+            "id" => { type => $UNIQIDCOLUMNNAME, },
+        }
+    };
+
+    return $DB;
 }
 
 1;
