@@ -41,19 +41,28 @@ sub getDB {
 
         columns => {
 
-            "Player_id" => {
-                type   => "longnumber",
-                linkto => "Player",
-            },
-            
-            "Player_won" => { type => "boolean", },
+            "id" => { type => $UNIQIDCOLUMNNAME, },
 
+            "Player_id" => {
+                label        => "Player",
+                showInSelect => 1,
+                order        => 1,
+                type         => "longnumber",
+                linkto       => "Player",
+             },
+            
             "Game_id"    => {
                 type   => "longnumber",
+                order  => 2,
                 linkto => "Game",
             },
 
-            "id" => { type => $UNIQIDCOLUMNNAME, },
+            "Player_won" =>
+            {
+                  type         => "boolean",
+                  order        => 3,
+                  showInSelect => 1,
+            },
 
             "deleted" =>
             {
@@ -97,7 +106,6 @@ sub getDB {
         dbuser     => $DBUSER,
         primarykey => ["id"],
 
-        #label => "",
         order => 2,
 
         idcolumnname => "id",
