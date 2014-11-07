@@ -33,6 +33,7 @@ sub getDB {
         rights     => $RIGHTS,
         dbuser     => $DBUSER,
         primarykey => ["id"],
+        hidden     => 1,
 
         #label => "",
         order => 2,
