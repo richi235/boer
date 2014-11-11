@@ -113,14 +113,20 @@ sub getDB {
 
         columns =>
         {
+            "id" => { type => $UNIQIDCOLUMNNAME, },
 
-            "gamedate" => {
-                type         => "datetime",
+            "gameday" => {
+                type         => "date",
                 showInSelect => 1,
+                order        => 1,
                 label        => "Spiel-Zeitpunkt",
               },
 
-            "id" => { type => $UNIQIDCOLUMNNAME, },
+            "gameday_sub_id" => {
+                type         => "number",
+                order        => 2,
+                label        => "Sub-ID",
+              },
 
             "deleted" =>
             {
