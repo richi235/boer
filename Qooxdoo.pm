@@ -20,6 +20,63 @@ sub new
    return $self;
 }
 
+sub onAuthenticated {
+    my $self       = shift;
+    my $options    = shift;
+    my $moreparams = shift || 0;
+
+    unless ( ( !$moreparams )
+        && $options->{curSession}
+        && $options->{connection} )
+    {
+        Log(
+            "In onAuthenticated: Missing parameters: curSession:"
+              . $options->{curSession}
+              . "connection:"
+              . $options->{connection} . ": !",
+            $ERROR
+        );
+        return undef;
+    }
+
+    my $return = $self->SUPER::onAuthenticated($options);
+
+    # show the projects button, to open table for projects
+    # only show this button if user is not admin
+    if (
+        defined(
+            my $err =
+              $self->{dbm}->checkRights( $options->{curSession}, $ADMIN )
+        )
+      )
+    {
+        $poe_kernel->yield( sendToQX => "addbutton "
+              . CGI::escape("") . " "
+              . CGI::escape("games_button") . " "
+              . CGI::escape("Games") . " "
+              . CGI::escape("") . " "
+              . CGI::escape("job=show,table=Game") );
+
+        $poe_kernel->yield( sendToQX => "addbutton "
+              . CGI::escape("") . " "
+              . CGI::escape("players_button") . " "
+              . CGI::escape("Spieler_verwalten") . " "
+              . CGI::escape("") . " "
+              . CGI::escape("job=show,table=Player") );
+    }
+
+    # display the projects table per default after login
+    $self->onShow(
+        {
+            table      => "Game",
+            curSession => $options->{curSession},
+            connection => $options->{connection}
+        }
+    );
+
+    # return the return value of the corresponding underliying framework method
+    return $return;
+}
 
 sub onSaveEditEntry
 {
