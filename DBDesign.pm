@@ -116,7 +116,17 @@ sub getDB {
             "id" => { type => $UNIQIDCOLUMNNAME, },
 
             "gameday" => {
-                type         => "date",
+                type        => "date",
+                defaultfunc => sub
+                {
+                    my @date_arr=localtime();
+                    return
+                        ""
+                      . ( 1900 + $date_arr[5] ) . "-"
+                      . ( 1 +    $date_arr[4] ) . "-"
+                      . ( $date_arr[3] )
+                      . " 00:00:00";
+                },
                 showInSelect => 1,
                 order        => 1,
                 label        => "Spiel-Zeitpunkt",
@@ -124,6 +134,7 @@ sub getDB {
 
             "gameday_sub_id" => {
                 type         => "number",
+                default      => 1,
                 order        => 2,
                 label        => "Sub-ID",
               },
