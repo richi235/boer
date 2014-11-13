@@ -101,9 +101,11 @@ sub onSaveEditEntry
         return undef;
     }
 
-    # enable autoclosing of the window when save button is preesed
-    $options->{close}++;
-
+    if ( !($options->{table} eq "Game") )
+    {
+        # enable autoclosing of the window when save button is preesed
+        $options->{close}++;
+    }
     my $return_value = $self->SUPER::onSaveEditEntry( $options, $moreparams );
     return $return_value;
 }
