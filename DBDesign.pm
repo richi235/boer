@@ -52,11 +52,12 @@ sub getDB {
                 linkto       => "Player",
              },
             
-            "Game_id"    => {
-                type   => "longnumber",
-                order  => 2,
-                linkto => "Game",
-            },
+            "Game_id" => {
+                type         => "longnumber",
+                order        => 2,
+                showInSelect => 1,
+                linkto       => "Game",
+              },
 
             "Player_won" =>
             {
@@ -117,6 +118,7 @@ sub getDB {
 
             "gameday" => {
                 type        => "date",
+                # display date of current day per default:
                 defaultfunc => sub
                 {
                     my @date_arr=localtime();
