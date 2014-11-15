@@ -109,6 +109,7 @@ sub getDB {
         primarykey => ["id"],
 
         order => 2,
+        orderby => "Game.id_",
 
         idcolumnname => "id",
 
